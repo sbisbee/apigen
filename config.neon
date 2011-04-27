@@ -24,6 +24,7 @@ templates:
 
 # Custom variables passed to each template
 variables:
-	title: API Documentation
-	baseUrl:
-	searchUrl:
+	title: 'Nette Framework API documentation'
+	baseUrl: 'http://api.nette.org/2.0'
+	searchUrl: 'http://www.google.com/cse?cx=011549293477758430224%3Avxofa9ufnhc&amp;ie=UTF-8&amp;q={searchTerms}+more%3Aapi'
+
