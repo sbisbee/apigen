@@ -25,14 +25,15 @@ ApiGen version 1.0
 ------------------
 ';
 
-$options = getopt('s:d:c:t:l:');
+$options = getopt('s:i:d:c:t:l:');
 
 if (!isset($options['s'], $options['d'])) { ?>
 Usage:
 	apigen [options]
 
 Options:
-	-s <path>  Name of a source directory to parse. Required.
+	-s <path>  Name of a source directory to parse. Multiple options are allowed. Required.
+	-i <path>  Directory or mask to ignore. Multiple options are allowed.
 	-d <path>  Folder where to save the generated documentation. Required.
 	-c <path>  Output config file.
 	-l <path>  Directory with additional libraries.
@@ -56,9 +57,13 @@ try {
 		$robot->register();
 	}
 
-	echo "Scanning folder $options[s]\n";
+	$folders = (array) $options['s'];
+	$ignored = (array) (isset($options['i']) ? $options['i'] : NULL);
+	echo 'Scanning folder ' . implode(', ', $folders) . ($ignored ? ' excluding ' . implode(', ', $ignored) : '') . "\n";
+	$ignored[] = '.* *.bak *.tmp';
+
 	$model = new Apigen\Model;
-	$model->parse($options['s']);
+	$model->parse($folders, $ignored);
 	$count = count($model->getClasses());
 
 	$model->expand();
