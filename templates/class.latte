@@ -82,11 +82,7 @@
 				{/foreach}
 			)</code>
 
-			<div class="short">
-				{!$method->description|texyline:false}
-			</div>
-
-			<div class="detailed">
+			<div>
 				{!$method->description|texy}
 
 				{var $annotations = $method->annotations}

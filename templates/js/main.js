@@ -32,24 +32,6 @@ $(function(){
 		$("table.summary:has(tr[data-order]) caption").click();
 	}
 
-	// delayed hover efect on method summary
-	var timeout;
-	$("tr:has(.detailed)").hover(function(){
-		clearTimeout(timeout);
-		var $tr = $(this);
-		timeout = setTimeout(function(){
-			$tr.find('.short').hide();
-			$tr.find('.detailed').show();
-		}, 500);
-	}, function(){
-		clearTimeout(timeout);
-
-	}).click(function(){ // immediate hover effect on method summary
-		clearTimeout(timeout);
-		$(this).find('.short').hide();
-		$(this).find('.detailed').show();
-	});
-
 	// hide deep namespaces
 	$('#left ul li:not(.active):not(:has(.active)) ul').addClass('collapsed');
 
